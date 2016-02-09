@@ -2,7 +2,7 @@
 <!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 	<id>NEND:ogembed</id>
-	<version>0.4</version>
+	<version>0.5</version>
 	<file name="$themedir/css/index.css">
 		<operation>
 			<search position="end"></search>
@@ -24,6 +24,11 @@
 /* Open Graph Embed BBC */
 $txt['scheduled_task_og_prune'] = 'Open Embed - Prune.';
 $txt['scheduled_task_desc_og_prune'] = 'Removes embed data that is older than 30 days from the database.';
+$txt['og_settings'] = 'Open Embed';
+$txt['og_ext_chk'] = 'Enable check on all embeds';
+$txt['og_ext_chk_desc'] = 'When unchecked it is set to only oEmbed sites.';
+$txt['og_allowed'] = 'Allowed Sites';
+$txt['og_allowed_desc'] = 'One per line - Example <br /><span style="color:#f00;"><b>sicomm.us<br />facebook.com</b></span>'
 ]]></add>
 		</operation>
 	</file>

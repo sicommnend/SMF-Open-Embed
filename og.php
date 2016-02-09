@@ -195,4 +195,30 @@ function scheduled_og_prune () {
 	$smcFunc['db_query']('', 'DELETE FROM {db_prefix}og_cache WHERE req_date < '.(time()-2419200));
 	return true;
 }
+function og_admin (&$subActions) {
+	$subActions['og_settings'] = 'og_settings';
+}
+function og_settings ($return_config = false) {
+
+	global $scripturl, $context, $txt;
+
+	$config_vars = array(
+		array('check', 'og_ext_chk', 'subtext' => $txt['og_ext_chk_desc']),
+		array('large_text', 'og_allowed', 'subtext' => $txt['og_allowed_desc']),
+	);
+
+	if (!empty($return_config))
+		return $config_vars;
+
+	$context['post_url'] = $scripturl . '?action=admin;area=modsettings;save;sa=og_settings';
+	$context['settings_title'] = 'Open Embed Settings';
+
+	if (isset($_GET['save'])) {
+		checkSession();
+		$save_vars = $config_vars;
+		saveDBSettings($save_vars);
+		redirectexit('action=admin;area=modsettings;sa=og_settings');
+	}
+	prepareDBSettingContext($config_vars);
+}
 ?>
