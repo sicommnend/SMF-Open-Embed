@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+	<id>NEND:ogembed</id>
+	<version>0.4</version>
+	<file name="$themedir/css/index.css">
+		<operation>
+			<search position="end"></search>
+			<add><![CDATA[
+/* Open Graph Embed BBC */
+.og-embed {margin:4px 8px;clear:both;border:1px solid #aaa;}
+.og-embed-title{font-weight:bold;padding:2px;background-color:#eee;border-bottom:1px solid #aaa;}
+.og-embed-media {background-color:#fff;padding:2px;border-bottom:1px solid #aaa;}
+.og-embed-video {width:600px;height:400px;}
+.og-embed-image {max-height:100px;max-width:100px;float:left;margin:2px;}
+.og-embed-description {background-color:#eee;padding:2px;}
+]]></add>
+		</operation>
+	</file>
+	<file name="$languagedir/Modifications.english.php">
+		<operation>
+			<search position="end"></search>
+			<add><![CDATA[
+/* Open Graph Embed BBC */
+$txt['scheduled_task_og_prune'] = 'Open Embed - Prune.';
+$txt['scheduled_task_desc_og_prune'] = 'Removes embed data that is older than 30 days from the database.';
+]]></add>
+		</operation>
+	</file>
+</modification>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE package-info SYSTEM "http://www.simplemachines.org/xml/package-info">
+<package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
+	<id>NEND:ogembed</id>
+	<name>Open Embed</name>
+	<version>0.4</version>
+	<type>modification</type>
+	<install>
+		<code>install.php</code>
+		<readme parsebbc="true">license.txt</readme>
+		<database>database.php</database>
+		<modification format="xml" type="file">install.xml</modification>
+		<require-file name="og.php" destination="$sourcedir" />
+	</install>
+	<uninstall>
+		<code>uninstall.php</code>
+		<modification reverse="true">install.xml</modification>
+		<remove-file name="$sourcedir/og.php" />
+	</uninstall>
+</package-info>
