@@ -97,7 +97,7 @@ function og_is_allowed($url) {
 	// This is here to protect against protocols that may be a security risk if allowed to embed openly.
 	$host = parse_url($url, PHP_URL_HOST);
 	if(!empty($modSettings['og_allowed']) && $modSettings['og_allowed'] != '')
-		$allowed = preg_split('/\r\n|[\r\n]/', $_POST['thetextarea']);
+		$allowed = preg_split('/\r\n|[\r\n]/', $modSettings['og_allowed']);
 	else
 		$allowed = array('animoto.com','chirb.it','clyp.it','collegehumor.com','deviantart.com','dotsub.com','embed.ly','facebook.com','flicker.com','flic.kr','funnyordie.com','huffduffer.com','hulu.com','ifixit.com','ifttt.com','kickstarter.com','mixcloud.com','nfb.ca','official.fm','polldaddy.com','portfolium.com','rdio.com','sapo.pt','screenr.com','scribd.com','slideshare.net','smugmug.com','ted.com','ustream.tv','viddler.com','videojug.com','vimeo.com','slideshare.net',);
 
