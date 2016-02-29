@@ -93,46 +93,16 @@ function og_bbc_validate (&$tag, &$data, &$disabled) {
 	$data = phase_og_data(get_og_data($data));
 }
 function og_is_allowed($url) {
+	global $modSettings;
 	// This is here to protect against protocols that may be a security risk if allowed to embed openly.
 	$host = parse_url($url, PHP_URL_HOST);
-	$allowed = array(
-		'animoto.com',
-		'chirb.it',
-		'clyp.it',
-		'collegehumor.com',
-		'deviantart.com',
-		'dotsub.com',
-		'embed.ly',
-		'facebook.com',
-		'flicker.com',
-		'flic.kr',
-		'funnyordie.com',
-		'huffduffer.com',
-		'hulu.com',
-		'ifixit.com',
-		'ifttt.com',
-		'kickstarter.com',
-		'mixcloud.com',
-		'nfb.ca',
-		'official.fm',
-		'polldaddy.com',
-		'portfolium.com',
-		'rdio.com',
-		'sapo.pt',
-		'screenr.com',
-		'scribd.com',
-		'slideshare.net',
-		'smugmug.com',
-		'ted.com',
-		'ustream.tv',
-		'viddler.com',
-		'videojug.com',
-		'vimeo.com',
-		'slideshare.net',
-	);
+	if(!empty($modSettings['og_allowed']) && $modSettings['og_allowed'] != '')
+		$allowed = preg_split('/\r\n|[\r\n]/', $_POST['thetextarea']);
+	else
+		$allowed = array('animoto.com','chirb.it','clyp.it','collegehumor.com','deviantart.com','dotsub.com','embed.ly','facebook.com','flicker.com','flic.kr','funnyordie.com','huffduffer.com','hulu.com','ifixit.com','ifttt.com','kickstarter.com','mixcloud.com','nfb.ca','official.fm','polldaddy.com','portfolium.com','rdio.com','sapo.pt','screenr.com','scribd.com','slideshare.net','smugmug.com','ted.com','ustream.tv','viddler.com','videojug.com','vimeo.com','slideshare.net',);
 
 	foreach ($allowed as $site)
-		if (stripos($host, $site))
+		if (stripos($host, trim($site)))
 			return (true);
 
 	return false;
@@ -198,12 +168,17 @@ function scheduled_og_prune () {
 function og_admin (&$subActions) {
 	$subActions['og_settings'] = 'og_settings';
 }
+function og_admin_areas(&$admin_areas)
+{
+	global $txt;
+	$admin_areas['config']['areas']['modsettings']['subsections']['og_settings'] = array($txt['og_settings']);
+}
 function og_settings ($return_config = false) {
 
 	global $scripturl, $context, $txt;
 
 	$config_vars = array(
-		array('check', 'og_ext_chk', 'subtext' => $txt['og_ext_chk_desc']),
+//		array('check', 'og_ext_chk', 'subtext' => $txt['og_ext_chk_desc']), *Not ready for prime time.
 		array('large_text', 'og_allowed', 'subtext' => $txt['og_allowed_desc']),
 	);
 
@@ -211,7 +186,7 @@ function og_settings ($return_config = false) {
 		return $config_vars;
 
 	$context['post_url'] = $scripturl . '?action=admin;area=modsettings;save;sa=og_settings';
-	$context['settings_title'] = 'Open Embed Settings';
+	$context['settings_title'] = $txt['og_settings'];
 
 	if (isset($_GET['save'])) {
 		checkSession();

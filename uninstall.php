@@ -5,5 +5,6 @@ if (!defined('SMF'))
 remove_integration_function('integrate_pre_include','$sourcedir/og.php');
 remove_integration_function('integrate_bbc_codes','og_bbc');
 remove_integration_function('integrate_modify_modifications','og_admin');
+remove_integration_function('integrate_admin_areas','og_admin_areas');
 $smcFunc['db_query']('', 'DELETE FROM {db_prefix}scheduled_tasks WHERE task = "og_prune"');
 ?>
