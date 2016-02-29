@@ -168,8 +168,7 @@ function scheduled_og_prune () {
 function og_admin (&$subActions) {
 	$subActions['og_settings'] = 'og_settings';
 }
-function og_admin_areas(&$admin_areas)
-{
+function og_admin_areas(&$admin_areas) {
 	global $txt;
 	$admin_areas['config']['areas']['modsettings']['subsections']['og_settings'] = array($txt['og_settings']);
 }
