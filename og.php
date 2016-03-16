@@ -4,9 +4,9 @@ if (!defined('SMF'))
 	die('Hacking attempt...');
 
 function get_og_data($url) {
-	global $smcFunc;
+	global $smcFunc, $modSettings;
 	$en_url = urlencode($url);
-	if (filter_var($url, FILTER_VALIDATE_URL) === FALSE)
+	if (filter_var($url, FILTER_VALIDATE_URL) === FALSE || !empty($modSettings['og_ext_chk']) && $modSettings['og_ext_chk'] == 1 && !og_is_allowed($url))
 		return(array('display'=>$url));
 	if(($data = cache_get_data('og-info'.$en_url, 1800)) != null) {
 		return json_decode($data, true);
@@ -168,7 +168,8 @@ function scheduled_og_prune () {
 function og_admin (&$subActions) {
 	$subActions['og_settings'] = 'og_settings';
 }
-function og_admin_areas(&$admin_areas) {
+function og_admin_areas(&$admin_areas)
+{
 	global $txt;
 	$admin_areas['config']['areas']['modsettings']['subsections']['og_settings'] = array($txt['og_settings']);
 }
@@ -177,7 +178,7 @@ function og_settings ($return_config = false) {
 	global $scripturl, $context, $txt;
 
 	$config_vars = array(
-//		array('check', 'og_ext_chk', 'subtext' => $txt['og_ext_chk_desc']), *Not ready for prime time.
+		array('check', 'og_ext_chk', 'subtext' => $txt['og_ext_chk_desc']),
 		array('large_text', 'og_allowed', 'subtext' => $txt['og_allowed_desc']),
 	);
 
