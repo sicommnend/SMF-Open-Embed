@@ -168,15 +168,12 @@ function scheduled_og_prune () {
 function og_admin (&$subActions) {
 	$subActions['og_settings'] = 'og_settings';
 }
-function og_admin_areas(&$admin_areas)
-{
+function og_admin_areas(&$admin_areas) {
 	global $txt;
 	$admin_areas['config']['areas']['modsettings']['subsections']['og_settings'] = array($txt['og_settings']);
 }
 function og_settings ($return_config = false) {
-
 	global $scripturl, $context, $txt;
-
 	$config_vars = array(
 		array('check', 'og_ext_chk', 'subtext' => $txt['og_ext_chk_desc']),
 		array('large_text', 'og_allowed', 'subtext' => $txt['og_allowed_desc']),
