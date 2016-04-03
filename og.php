@@ -62,9 +62,10 @@ function get_og_data($url) {
 		if (empty($data['og:title']))
 			$data['display'] = $url;
 		if (!empty($data['og:video']))
-			$data['og:video'] = preg_replace(array('/autoplay=1/','/autoplay=true/'),array('autoplay=0','autoplay=false'),$data['og:video']);
+		if (!empty($data['og:video']))
+			$data['og:video'] = preg_replace(array('/autoPlay=1/','/autoplay=1/','/autoplay=true/'),array('autoPlay=0','autoplay=0','autoplay=false'),$data['og:video']);
 		if (!empty($data['og:video:url']))
-			$data['og:video:url'] = preg_replace(array('/autoplay=1/','/autoplay=true/'),array('autoplay=0','autoplay=false'),$data['og:video:url']);
+			$data['og:video:url'] = preg_replace(array('/autoPlay=1/','/autoplay=1/','/autoplay=true/'),array('autoPlay=0','autoplay=0','autoplay=false'),$data['og:video:url']);
 		$data['req_date'] = time();
 		$smcFunc['db_insert']('replace', '{db_prefix}og_cache', array('url' => 'text', 'vars' => 'text', 'req_date' => 'int'),array($en_url, json_encode($data), $data['req_date']),array('url'));
 		cache_put_data('og-info'.$en_url, json_encode($data), 1800);
