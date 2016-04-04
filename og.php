@@ -133,7 +133,7 @@ function phase_og_video ($data) {
 					<embed class="og-embed-video" src="'
 						.(!empty($data['og:video:url']) ? $data['og:video:url'] : (!empty($data['og:video']) ? $data['og:video'] : ''))
 						.'" autostart="false"'
-						.(!empty($data['og:video:url']) ? ' type="'.$data['og:video:type'].'"' : '').'></embed>
+						.(!empty($data['og:video:type']) ? ' type="'.$data['og:video:type'].'"' : '').'></embed>
 				</center>
 			</div>');
 }
