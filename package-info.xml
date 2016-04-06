@@ -3,7 +3,7 @@
 <package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
 	<id>NEND:ogembed</id>
 	<name>Open Embed</name>
-	<version>0.5.3</version>
+	<version>0.5.4</version>
 	<type>modification</type>
 	<install>
 		<code>install.php</code>
