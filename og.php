@@ -112,7 +112,7 @@ function og_is_allowed($url) {
 function phase_og_data($data) {
 	if (!empty($data['display']))
 		return('<a href="'.$data['display'].'" target="_blank">'.$data['display'].'</a>');
-		
+
 	return ('
 		<div class="og-embed">
 			<div class="og-embed-title"><a href="'.$data['og:url'].'" target="_blank">
@@ -154,9 +154,7 @@ function phase_og_oembed ($data) {
 	return ('
 			<div class="og-embed-media">
 				<center>
-					<div class="og-embed-video">
-						'.$data['html'].'
-					</div>
+					'.$data['html'].'
 				</center>
 			</div>
 			');
