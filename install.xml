@@ -28,7 +28,7 @@ $txt['og_settings'] = 'Open Embed';
 $txt['og_ext_chk'] = 'Enable check on all embeds';
 $txt['og_ext_chk_desc'] = 'When unchecked it is set to only oEmbed sites.';
 $txt['og_allowed'] = 'Allowed Sites';
-$txt['og_allowed_desc'] = 'One per line - Example <br /><span style="color:#f00;"><b>sicomm.us<br />facebook.com</b></span>'
+$txt['og_allowed_desc'] = 'One per line - Example <br /><span style="color:#f00;"><b>sicomm.us<br />facebook.com</b></span>';
 ]]></add>
 		</operation>
 	</file>
