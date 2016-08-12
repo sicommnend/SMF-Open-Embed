@@ -23,8 +23,14 @@ function get_og_data($url) {
 		$doc = new DomDocument();
 		$doc->loadHTML(file_get_contents($url,NULL,stream_context_create(array('http'=>array('method'=>"GET",'header'=>"Accept-language: en\r\nCookie: foo=bar\r\n",'user_agent'=>"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36"))), 0, 20000));
 		$xpath = new DOMXPath($doc);
-		foreach ($xpath->query('//*/meta[starts-with(@property, \'og:\')]') as $meta)
-			$data[$meta->getAttribute('property')] = $meta->getAttribute('content');
+		foreach ($xpath->query('//*/meta[starts-with(@property, \'og:\')]') as $meta) {
+			if (isset($data['og:video:url']) && $meta->getAttribute('property') == 'og:video:url')
+				$data['og:video:url2'] = $data['og:video:url'];
+			if (isset($data['og:video:type']) && isset($data['og:video:url2']) && $meta->getAttribute('property') == 'og:video:type' && $meta->getAttribute('content') == 'application/x-shockwave-flash')
+				$data['og:video:url'] = $data['og:video:url2'];
+			else
+				$data[$meta->getAttribute('property')] = $meta->getAttribute('content');
+		}
 		if (empty($data['og:title']) && $xpath->query('//title')->length)
 			$data['og:title'] = $xpath->query('//title')->item(0)->textContent;
 		if (empty($data['og:description']) && $xpath->query('/html/head/meta[@name="description"]/@content')->length)
