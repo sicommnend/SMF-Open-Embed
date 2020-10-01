@@ -198,4 +198,14 @@ function og_settings ($return_config = false) {
 	}
 	prepareDBSettingContext($config_vars);
 }
+
+function og_bbc_button(&$buttons) {
+	$buttons[1][] = array(
+		'image' => 'embed',
+		'code' => 'embed',
+		'before' => '[embed]',
+		'after' => '[/embed]',
+		'description' => 'Open Embed',
+	);
+}
 ?>
