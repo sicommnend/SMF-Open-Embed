@@ -3,7 +3,7 @@
 <package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
 	<id>NEND:ogembed</id>
 	<name>Open Embed</name>
-	<version>0.5.5</version>
+	<version>0.5.5.1</version>
 	<type>modification</type>
 	<install>
 		<code>install.php</code>
@@ -11,10 +11,13 @@
 		<database>database.php</database>
 		<modification format="xml" type="file">install.xml</modification>
 		<require-file name="og.php" destination="$sourcedir" />
+		<require-file name="embed.gif" destination="$imagesdir/bbc" />
+		<redirect url="?action=admin;area=modsettings;sa=og_settings" timeout="1000" />
 	</install>
 	<uninstall>
 		<code>uninstall.php</code>
 		<modification reverse="true">install.xml</modification>
 		<remove-file name="$sourcedir/og.php" />
+		<remove-file name="$imagesdir/bbc/embed.gif" />
 	</uninstall>
 </package-info>
